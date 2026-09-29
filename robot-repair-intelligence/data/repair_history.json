@@ -1,0 +1,1545 @@
+[
+ {
+ "case_id": "RC-0001",
+ "date": "2026-04-03",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic servo feedback instability detected on Axis 2 during deceleration.",
+ "symptoms": [
+ "Axis 2 shudders for 0.3-0.5 s before stop",
+ "position-error trace shows repeated high-frequency spikes",
+ "controller reports intermittent feedback mismatch"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 38,
+ "load_percent": 78,
+ "runtime_hours": 12450,
+ "cycle_count": 184220
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Captured 200-cycle current and feedback traces, compared Axis 2 against Axis 4, inspected encoder connector seating, and measured shield continuity with the arm stationary and while rotating the joint through the cable bend range.",
+ "repair_action": "Reseated the Axis 2 feedback connector, cleaned the contact surfaces with approved electrical contact cleaner, and secured the connector latch with a new vibration retainer.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 31,
+ "downtime_hours": 3.5,
+ "technician_notes": "Connector reseating restored Axis 2 for 31 operating hours, but the same feedback dropout returned during a high-speed deceleration cycle at similar payload. The first repair did not provide a durable recovery.",
+ "parts_involved": [
+ "Axis 2 feedback connector retainer",
+ "Electrical contact cleaner"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0002",
+ "date": "2026-04-07",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-MO-117",
+ "fault_description": "Synthetic excessive following-error condition on Axis 5 during low-speed orientation moves.",
+ "symptoms": [
+ "Axis 5 stalls near wrist-down orientation",
+ "following error rises without a matching current spike",
+ "motor housing is slightly warmer than adjacent wrist axes"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 31,
+ "load_percent": 42,
+ "runtime_hours": 9110,
+ "cycle_count": 132880
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Ran unloaded and 40% payload tests, trended motor current versus following error, and checked brake release timing and mechanical backlash at Axis 5.",
+ "repair_action": "Adjusted brake release timing by 18 ms within the synthetic controller's service range and repeated 500 dry cycles.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 2.2,
+ "technician_notes": "Following error stayed within baseline on unloaded and loaded runs. No repeat fault during 500 verification cycles.",
+ "parts_involved": [
+ "Axis 5 brake timing shims"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0003",
+ "date": "2026-04-11",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-EN-233",
+ "fault_description": "Synthetic intermittent absolute-position reference loss on Axis 1 after cold start.",
+ "symptoms": [
+ "Axis 1 reference status drops after controller boot",
+ "joint position display shifts by 0.7-1.0 degrees",
+ "restarting once sometimes clears the alarm"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 19,
+ "load_percent": 15,
+ "runtime_hours": 15120,
+ "cycle_count": 221430
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Performed three cold-start tests, logged reference battery voltage, inspected the encoder battery harness, and checked for a voltage dip during brake release.",
+ "repair_action": "Replaced the Axis 1 position-reference backup cell and retensioned the battery-harness clamp.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 1.8,
+ "technician_notes": "Reference held through 12 cold starts and 300 mixed-speed cycles. Backup-cell voltage measured stable after replacement.",
+ "parts_involved": [
+ "Axis 1 reference backup cell",
+ "Harness clamp"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0004",
+ "date": "2026-04-15",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-TP-511",
+ "fault_description": "Synthetic TCP drift warning on the tool flange after repeated thermal cycles; initial fastening correction produced only short-term recovery.",
+ "symptoms": [
+ "TCP verification is 0.6 mm high in Z",
+ "drift is largest after warm-up",
+ "no visible collision marks on the flange"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 40,
+ "load_percent": 68,
+ "runtime_hours": 10380,
+ "cycle_count": 158700
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Verified TCP at cold and hot state, checked flange bolt torque pattern, inspected the tool plate dowel interface for debris, and repeated the check after 6 hours of thermal cycling.",
+ "repair_action": "Cleaned the dowel interface and retorqued the tool plate fasteners in a cross pattern; TCP was re-taught before release.",
+ "outcome": "Temporary Success",
+ "time_to_recurrence_hours": 54,
+ "downtime_hours": 3.1,
+ "technician_notes": "TCP returned to baseline immediately after retorque and re-teach, but the 0.6 mm hot-state drift returned after 54 operating hours. The later inspection showed the locating interface remained mechanically worn, so the initial fastening correction was not durable.",
+ "parts_involved": [
+ "Tool plate fastener set",
+ "TCP calibration record"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0005",
+ "date": "2026-04-20",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic servo feedback instability on Axis 2, now coincident with a cable-carrier position near full extension.",
+ "symptoms": [
+ "Axis 2 jitters only when the upper-arm harness is fully flexed",
+ "fault frequency increases during rapid wrist moves",
+ "diagnostic trace shows a brief feedback dropout rather than sustained noise"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 37,
+ "load_percent": 81,
+ "runtime_hours": 12531,
+ "cycle_count": 186940
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Flex-tested the external harness at 10-degree intervals, monitored differential feedback voltage, and inspected the bend-radius point where the Axis 2 cable bundle enters the elbow cover.",
+ "repair_action": "Re-routed the feedback branch to restore bend radius, replaced a worn cable-guide insert, and verified continuity while cycling the joint 1,000 times.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.1,
+ "technician_notes": "The earlier connector-only repair had not addressed the cable motion. After rerouting, no dropout appeared during 1,000 guided cycles at 90% of maximum joint speed.",
+ "parts_involved": [
+ "Axis 2 cable-guide insert",
+ "Harness tie mounts"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0006",
+ "date": "2026-04-24",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-BR-308",
+ "fault_description": "Synthetic wrist brake confirmation timeout on Axis 6 after an extended idle period.",
+ "symptoms": [
+ "Axis 6 brake-open confirmation arrives late",
+ "first motion after idle produces a small jerk",
+ "alarm clears after two motion commands"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 28,
+ "load_percent": 34,
+ "runtime_hours": 9164,
+ "cycle_count": 133920
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Measured brake coil resistance cold and warm, monitored release-current ramp, and compared idle-release timing after 5 minutes versus 8 hours.",
+ "repair_action": "Cleaned the brake actuator plunger area without replacing the brake, then adjusted the synthetic release-current ramp and performed an overnight idle verification.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 96,
+ "downtime_hours": 3.0,
+ "technician_notes": "Brake timing stayed normal during short-idle verification, but the timeout returned after the first long idle period 96 operating hours later. Cleaning and timing adjustment did not provide a durable recovery.",
+ "parts_involved": [
+ "Brake actuator cleaning sleeve"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0007",
+ "date": "2026-04-29",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CO-321",
+ "fault_description": "Synthetic controller communications timeout between the motion rack and Axis 3 drive module.",
+ "symptoms": [
+ "Axis 3 status freezes for 1-2 seconds",
+ "event log shows packet retries",
+ "fault occurs during simultaneous Axis 1 and Axis 3 acceleration"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 34,
+ "load_percent": 74,
+ "runtime_hours": 15244,
+ "cycle_count": 223120
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Captured bus error counters, swapped the network patch lead with a known-good synthetic spare, and inspected cabinet grounding and connector latch tension.",
+ "repair_action": "Replaced the rack-side patch lead and added a locking clip to the communication connector.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 2.9,
+ "technician_notes": "Packet retries returned to baseline and no timeout occurred over 2,000 synchronized moves.",
+ "parts_involved": [
+ "Motion-rack patch lead",
+ "Communication connector locking clip"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0008",
+ "date": "2026-05-03",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic servo feedback instability on Axis 4 presenting only after sustained high-speed operation; first repair did not eliminate the thermal-linked oscillation.",
+ "symptoms": [
+ "Axis 4 develops a fine oscillation after about 50 minutes of continuous cycling",
+ "fault resets after a power cycle",
+ "feedback signal shows rising low-frequency ripple with temperature"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 42,
+ "load_percent": 86,
+ "runtime_hours": 10412,
+ "cycle_count": 160980
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Ran a thermal soak to 48 C internal cabinet air, monitored Axis 4 feedback ripple and drive temperature, then replaced the feedback isolator as an initial electrical correction and repeated the soak.",
+ "repair_action": "Replaced the Axis 4 feedback isolator module and repeated a 90-minute thermal soak under production-equivalent motion.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 14,
+ "downtime_hours": 5.2,
+ "technician_notes": "The isolator replacement reduced the ripple during the first test, but the oscillation returned after 14 operating hours once the drive bay reached sustained thermal load. Subsequent evidence was required because the initial replacement did not remove the heat-dependent fault.",
+ "parts_involved": [
+ "Axis 4 feedback isolator module"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0009",
+ "date": "2026-05-08",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-LB-188",
+ "fault_description": "Synthetic payload mismatch alarm caused by an inconsistent payload record after tool change.",
+ "symptoms": [
+ "motion planner limits acceleration on pick-up",
+ "no mechanical fault present",
+ "alarm appears after tool identification macro"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 35,
+ "load_percent": 96,
+ "runtime_hours": 12598,
+ "cycle_count": 188130
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Compared stored payload mass and inertia values with scale measurements, checked the tool-change macro parameters, and ran a no-load reference program.",
+ "repair_action": "Corrected the payload profile and inertia tensor in the synthetic application configuration and locked the tool profile against accidental edits.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 1.4,
+ "technician_notes": "Acceleration returned to expected values with no alarm. Mechanical inspection remained clean.",
+ "parts_involved": [
+ "Tool profile configuration backup"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0010",
+ "date": "2026-05-13",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-BR-308",
+ "fault_description": "Synthetic Axis 6 brake confirmation timeout recurring after the prior timing adjustment.",
+ "symptoms": [
+ "brake confirmation still late after long idle",
+ "coil current reaches target but mechanical release is delayed",
+ "slight residue visible around the brake dust shield"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 30,
+ "load_percent": 39,
+ "runtime_hours": 9260,
+ "cycle_count": 135450
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Repeated long-idle tests, measured release-current waveform, inspected the brake plunger travel, and compared the actuator gap against the synthetic service baseline.",
+ "repair_action": "Replaced the Axis 6 brake actuator and reset the release timing to the nominal profile.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.6,
+ "technician_notes": "The previous cleaning and timing adjustment provided only a temporary recovery. New actuator cleared the timeout after 24-hour idle verification.",
+ "parts_involved": [
+ "Axis 6 brake actuator",
+ "Brake actuator spring"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0011",
+ "date": "2026-05-18",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-GR-614",
+ "fault_description": "Synthetic gearbox temperature rise on Axis 2 during high-load indexing.",
+ "symptoms": [
+ "Axis 2 gearbox temperature rises 9 C above its historical band",
+ "audible low-frequency hum under reversal",
+ "backlash is within nominal measurement at room temperature"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 36,
+ "load_percent": 92,
+ "runtime_hours": 15320,
+ "cycle_count": 224760
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Logged temperature against load over 600 cycles, checked lubricant level through the inspection port, and measured backlash cold and after thermal stabilization.",
+ "repair_action": "Drained contaminated synthetic lubricant, flushed the housing, refilled with the specified synthetic lubricant, and repeated the load test.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 6.0,
+ "technician_notes": "Temperature rise returned to the robot's prior trend and the reversal hum disappeared. No gear tooth damage was visible during inspection.",
+ "parts_involved": [
+ "Synthetic gearbox lubricant",
+ "Inspection-port seal"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0012",
+ "date": "2026-05-22",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CB-209",
+ "fault_description": "Synthetic cabinet cooling alarm caused by restricted intake airflow.",
+ "symptoms": [
+ "cabinet inlet temperature rises during afternoon shift",
+ "cooling fan remains at maximum speed",
+ "alarm clears when cabinet door is opened"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 44,
+ "load_percent": 71,
+ "runtime_hours": 10480,
+ "cycle_count": 162210
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Measured inlet and outlet temperature differential, checked filter pressure drop, and inspected the cabinet plenum for packaging debris.",
+ "repair_action": "Replaced the clogged intake filter, vacuumed the plenum, and verified airflow at full fan command.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 2.0,
+ "technician_notes": "Inlet temperature stabilized after 40 minutes at full load. Filter replacement interval was shortened in the maintenance record.",
+ "parts_involved": [
+ "Cabinet intake filter"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0013",
+ "date": "2026-05-27",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 servo feedback instability under high payload; drive-side noise was suspected but the first electrical repair did not produce a durable recovery.",
+ "symptoms": [
+ "jitter appears only above 85% payload",
+ "Axis 2 feedback channel remains electrically connected",
+ "error rate increases when elbow housing reaches approximately 43 C"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 39,
+ "load_percent": 91,
+ "runtime_hours": 12642,
+ "cycle_count": 190420
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Compared low-load and high-load feedback traces, monitored elbow housing temperature, checked drive supply ripple, and isolated the symptom by reducing payload and acceleration.",
+ "repair_action": "Replaced the Axis 2 drive input filter and recalibrated current-loop compensation, then verified operation at 50% and 90% payload.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 22,
+ "downtime_hours": 5.8,
+ "technician_notes": "The filter replacement reduced the observed ripple but the feedback instability returned after 22 operating hours during a 90% payload production sequence. The recurrence showed that the input filter was not the only contributor; later drive-side testing was required.",
+ "parts_involved": [
+ "Axis 2 drive input filter module"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0014",
+ "date": "2026-06-01",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-EN-233",
+ "fault_description": "Synthetic Axis 1 reference loss repeated despite a recently replaced backup cell.",
+ "symptoms": [
+ "reference alarm returns after overnight shutdown",
+ "backup-cell voltage is normal",
+ "reference is lost only during controller power-down sequence"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 23,
+ "load_percent": 22,
+ "runtime_hours": 9332,
+ "cycle_count": 136820
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Monitored reference-supply voltage during power-down, inspected the battery holder, and checked the grounding path between the encoder shield and cabinet reference.",
+ "repair_action": "Replaced the battery-holder contacts and repaired a loose shield termination at the controller-side harness.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.0,
+ "technician_notes": "Backup cell had been healthy; the repeat fault was traced to a supply interruption and poor shield termination during shutdown.",
+ "parts_involved": [
+ "Encoder battery-holder contact set",
+ "Shield termination lug"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0015",
+ "date": "2026-06-06",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic servo feedback instability on Axis 3 during rapid reversals; an initial mechanical preload adjustment provided temporary recovery.",
+ "symptoms": [
+ "Axis 3 exhibits a sharp position spike only during direction reversal",
+ "fault disappears at half speed",
+ "no feedback dropout recorded when the joint is moved slowly"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 33,
+ "load_percent": 63,
+ "runtime_hours": 15410,
+ "cycle_count": 227100
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Performed acceleration-step tests, checked encoder signal quality, measured joint backlash, and repeated the event with the tool payload removed.",
+ "repair_action": "Adjusted the Axis 3 mechanical backlash preload and replaced the worn reduction-stage coupling insert, followed by 600 reversal cycles.",
+ "outcome": "Temporary Success",
+ "time_to_recurrence_hours": 68,
+ "downtime_hours": 7.3,
+ "technician_notes": "The reversal spike disappeared during the initial 600-cycle verification, but the same position spike returned after 68 operating hours during another high-acceleration production sequence. Feedback signal quality remained clean when the fault returned, so the first mechanical correction was only partially effective.",
+ "parts_involved": [
+ "Axis 3 reduction-stage coupling insert",
+ "Backlash preload shims"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0016",
+ "date": "2026-06-11",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-TP-511",
+ "fault_description": "Synthetic TCP drift returns after temperature cycling.",
+ "symptoms": [
+ "TCP shifts laterally by 0.8 mm after two hours",
+ "cold verification is correct",
+ "tool plate exhibits microscopic fretting marks"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 41,
+ "load_percent": 74,
+ "runtime_hours": 10542,
+ "cycle_count": 164030
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Repeated hot/cold TCP verification, inspected dowel wear under magnification, and measured tool plate runout before and after thermal soak.",
+ "repair_action": "Replaced two worn locating dowels, installed a new tool plate, and recalibrated the TCP.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 5.8,
+ "technician_notes": "The prior fastener re-torque corrected alignment temporarily but did not remove the worn locating interface. No measurable TCP shift after 6-hour thermal cycling.",
+ "parts_involved": [
+ "Tool plate",
+ "Locating dowels",
+ "Mounting fasteners"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0017",
+ "date": "2026-06-16",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CO-321",
+ "fault_description": "Synthetic motion-bus timeout affecting Axis 4 during high electromagnetic load from nearby welding equipment.",
+ "symptoms": [
+ "Axis 4 command acknowledgment pauses for about 1 second",
+ "timeouts cluster during adjacent weld starts",
+ "cabinet network counters rise without physical connector movement"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 37,
+ "load_percent": 69,
+ "runtime_hours": 12720,
+ "cycle_count": 192800
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Correlated robot event timestamps with the cell welder cycle, checked shield continuity, measured transient cabinet ground potential, and ran the robot with the welder inhibited.",
+ "repair_action": "Added a ferrite suppression sleeve to the synthetic communication bundle and improved cabinet bonding at the communication rack.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.3,
+ "technician_notes": "No timeouts occurred during 1,500 cycles with the welder active after the bonding and noise-control changes.",
+ "parts_involved": [
+ "Communication-bundle ferrite sleeve",
+ "Cabinet bonding strap"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0018",
+ "date": "2026-06-21",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-MO-117",
+ "fault_description": "Synthetic Axis 5 following-error alarm after payload inertia was increased by a new end effector.",
+ "symptoms": [
+ "Axis 5 stalls only during combined yaw and wrist moves",
+ "current briefly peaks at direction change",
+ "no stall with the previous tool"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 29,
+ "load_percent": 58,
+ "runtime_hours": 9410,
+ "cycle_count": 138410
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Compared motor current and following error with old and new tool payload models, verified brake timing, and tested at reduced acceleration.",
+ "repair_action": "Updated the payload inertia matrix and reduced the synthetic wrist acceleration profile by 8% for the new tool recipe.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 3.6,
+ "technician_notes": "Mechanical brake and drive checks were normal. Alarm disappeared once the motion model matched the new tool inertia.",
+ "parts_involved": [
+ "Tool payload identification record"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0019",
+ "date": "2026-06-26",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-GR-614",
+ "fault_description": "Synthetic Axis 2 gearbox temperature alarm recurring after lubricant service; bearing replacement reduced backlash growth but did not eliminate the heat rise under reversal load.",
+ "symptoms": [
+ "temperature rise has returned only during repeated reversals",
+ "lubricant appears clean",
+ "backlash has increased by 0.18 degrees from the prior baseline"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 35,
+ "load_percent": 95,
+ "runtime_hours": 15512,
+ "cycle_count": 229980
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Compared backlash and temperature with historical data, inspected magnetic drain residue, and performed a low-load thermal test to separate load heating from frictional heating.",
+ "repair_action": "Replaced the Axis 2 output-bearing cartridge and reset backlash preload; lubricant was retained because its condition was acceptable.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 41,
+ "downtime_hours": 8.9,
+ "technician_notes": "Temperature improved during low-load verification but the alarm returned after 41 operating hours during repeated high-load reversals. The bearing replacement reduced measured drag but did not remove the underlying heat source; additional gearbox inspection was required.",
+ "parts_involved": [
+ "Axis 2 output-bearing cartridge",
+ "Backlash preload hardware"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0020",
+ "date": "2026-07-01",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CB-209",
+ "fault_description": "Synthetic cabinet cooling alarm returns after an initial cooling-fan and power-terminal repair, with airflow improvement but persistent heat rise during extended duty.",
+ "symptoms": [
+ "cabinet temperature climbs after 75 minutes at 80% load",
+ "intake filter pressure drop is normal",
+ "fan speed command is 100% but measured airflow is low"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 43,
+ "load_percent": 83,
+ "runtime_hours": 10610,
+ "cycle_count": 166240
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Measured fan tachometer feedback, compared commanded versus actual airflow, inspected fan impeller clearance, and checked voltage drop at the fan supply during a 2-hour load test.",
+ "repair_action": "Replaced the cooling fan assembly and repaired a partially backed-out power terminal at the fan connector; cabinet was returned after an abbreviated thermal check.",
+ "outcome": "Temporary Success",
+ "time_to_recurrence_hours": 63,
+ "downtime_hours": 4.9,
+ "technician_notes": "Measured airflow returned to baseline and the alarm cleared after repair, but the temperature alarm returned after 63 operating hours during sustained 83% load. The later recurrence indicated that the fan-side fault had improved but another heat source remained.",
+ "parts_involved": [
+ "Cabinet cooling fan assembly",
+ "Fan power terminal"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0021",
+ "date": "2026-07-05",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 feedback instability after a high-humidity shift; harness replacement restored insulation resistance but did not prevent later recurrence.",
+ "symptoms": [
+ "intermittent jitter begins after condensation-prone startup",
+ "fault frequency is higher before cabinet warm-up",
+ "connector appears visually clean but insulation resistance is slightly reduced"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 27,
+ "load_percent": 70,
+ "runtime_hours": 12831,
+ "cycle_count": 195090
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Performed insulation-resistance testing on the Axis 2 feedback branch, inspected the cabinet-to-arm transition for moisture ingress, and compared signal quality before and after cabinet warm-up.",
+ "repair_action": "Replaced the moisture-affected section of feedback harness and installed a sealed transition boot; connector service was also repeated.",
+ "outcome": "Temporary Success",
+ "time_to_recurrence_hours": 117,
+ "downtime_hours": 7.1,
+ "technician_notes": "The new harness restored insulation resistance and eliminated the jitter during the verification shift. The same fault returned after 117 operating hours during another condensation-prone startup, indicating that moisture protection or another upstream interface still required investigation.",
+ "parts_involved": [
+ "Axis 2 feedback harness section",
+ "Sealed transition boot",
+ "Connector retainer"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0022",
+ "date": "2026-07-09",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-BR-308",
+ "fault_description": "Synthetic Axis 6 brake timeout after actuator replacement, now observed at high ambient temperature.",
+ "symptoms": [
+ "brake confirmation is late only above 35 C ambient",
+ "cold timing is normal",
+ "coil current remains within expected range"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 39,
+ "load_percent": 36,
+ "runtime_hours": 9512,
+ "cycle_count": 140220
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Ran brake timing tests at 22 C and 39 C ambient, measured coil resistance versus temperature, and checked the controller output waveform.",
+ "repair_action": "Replaced the brake coil lead harness and added a heat-resistant strain relief near the wrist cover; actuator itself tested within limits.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 3.9,
+ "technician_notes": "The replacement actuator was not the root cause of this recurrence. Coil lead resistance rose abnormally with heat due to a damaged conductor near the bend point.",
+ "parts_involved": [
+ "Axis 6 brake coil lead harness",
+ "Heat-resistant strain relief"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0023",
+ "date": "2026-07-14",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-EN-233",
+ "fault_description": "Synthetic Axis 1 reference loss after repeated power interruptions.",
+ "symptoms": [
+ "reference alarm appears only after abrupt cabinet power removal",
+ "normal controlled shutdowns do not reproduce it",
+ "backup cell and holder test healthy"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 25,
+ "load_percent": 18,
+ "runtime_hours": 15608,
+ "cycle_count": 231340
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Simulated controlled and abrupt power-down sequences, logged reference voltage decay, and inspected the synthetic controller's shutdown hold-up circuit.",
+ "repair_action": "Replaced the controller reference hold-up capacitor module and added a controlled-shutdown interlock to the maintenance procedure.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.5,
+ "technician_notes": "Reference retention was stable through 20 simulated abrupt interruptions and 10 controlled shutdowns after repair.",
+ "parts_involved": [
+ "Controller reference hold-up capacitor module"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0024",
+ "date": "2026-07-19",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic servo feedback instability on Axis 4 traced to mechanical resonance rather than sensor dropout.",
+ "symptoms": [
+ "oscillation occurs at one narrow speed band",
+ "feedback signal is clean",
+ "reducing acceleration shifts the symptom away from the production trajectory"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 38,
+ "load_percent": 88,
+ "runtime_hours": 10710,
+ "cycle_count": 168910
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Swept Axis 4 through multiple speed bands, compared encoder phase to motor current, and repeated tests with the tool mass reduced by 20%.",
+ "repair_action": "Rebalanced the tool-side payload mount and changed the synthetic trajectory dwell/acceleration profile to avoid the measured resonance band.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 5.0,
+ "technician_notes": "No encoder dropout was detected. The symptom disappeared when the excitation frequency was removed from the trajectory.",
+ "parts_involved": [
+ "Tool-side balance weights",
+ "Trajectory profile record"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0025",
+ "date": "2026-07-24",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 feedback instability returns during flex testing after a harness replacement.",
+ "symptoms": [
+ "feedback dropout now appears at a different elbow angle",
+ "new harness insulation is intact",
+ "fault occurs when a secondary service loop contacts the cable guide"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 34,
+ "load_percent": 79,
+ "runtime_hours": 12916,
+ "cycle_count": 197460
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Mapped the exact joint angle at each dropout, inspected the replacement harness path, checked service-loop clearance, and applied a temporary low-friction sleeve to the contact point.",
+ "repair_action": "Relocated the secondary service loop, replaced the worn guide edge with a rounded liner, and repeated 2,000 articulation cycles.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.8,
+ "technician_notes": "The replacement harness itself was electrically sound. A changed contact point introduced a new mechanical pinch condition that was not present in the earlier configuration.",
+ "parts_involved": [
+ "Cable-guide rounded liner",
+ "Service-loop clamps"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0026",
+ "date": "2026-07-28",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-MO-117",
+ "fault_description": "Synthetic Axis 5 following-error alarm after an extended production run with a hot wrist assembly.",
+ "symptoms": [
+ "following error grows after 2 hours",
+ "motor current becomes asymmetric between forward and reverse moves",
+ "no stall at cold start"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 40,
+ "load_percent": 61,
+ "runtime_hours": 9590,
+ "cycle_count": 141900
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Logged Axis 5 following error and current every 50 cycles during thermal soak, inspected reducer lubricant, and checked bearing drag before and after warm-up.",
+ "repair_action": "Replaced a partially degraded Axis 5 reducer bearing and refreshed the reducer lubricant.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 7.8,
+ "technician_notes": "The same code had previously been associated with brake timing and payload modeling. This event showed temperature-dependent mechanical drag instead; following error stayed within baseline after repair.",
+ "parts_involved": [
+ "Axis 5 reducer bearing",
+ "Synthetic reducer lubricant"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0027",
+ "date": "2026-08-02",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-TP-511",
+ "fault_description": "Synthetic TCP drift alarm after a gripper jaw rebuild.",
+ "symptoms": [
+ "TCP shifts 1.1 mm only under gripping force",
+ "free-space TCP check remains accurate",
+ "jaw clamp force is uneven left to right"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 32,
+ "load_percent": 52,
+ "runtime_hours": 15710,
+ "cycle_count": 233880
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Verified TCP with no external force, repeated measurement while applying 300 N equivalent clamp load, and checked gripper adapter plate parallelism.",
+ "repair_action": "Corrected gripper adapter plate seating and replaced two uneven clamp spacers; TCP calibration was retained after mechanical correction.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 3.7,
+ "technician_notes": "The flange itself remained stable. Drift was load-induced deformation at the rebuilt gripper interface.",
+ "parts_involved": [
+ "Gripper clamp spacers",
+ "Adapter plate shims"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0028",
+ "date": "2026-08-06",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CB-209",
+ "fault_description": "Synthetic cabinet cooling alarm under unusually high ambient temperature; first heat-transfer repair did not resolve the thermal rise.",
+ "symptoms": [
+ "cabinet alarm occurs at 46 C ambient",
+ "fan airflow and filter pressure are normal",
+ "drive module temperature is elevated even at expected current"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 46,
+ "load_percent": 77,
+ "runtime_hours": 10840,
+ "cycle_count": 171520
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Measured cabinet heat rejection at steady load, verified fan airflow, inspected heat-sink contact surfaces, and compared drive-module losses against a known-good robot.",
+ "repair_action": "Replaced a degraded Axis 4 drive heat-sink interface pad and reseated the drive power module, then repeated a 90-minute thermal test.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 19,
+ "downtime_hours": 5.8,
+ "technician_notes": "Cabinet temperature improved initially but the alarm returned after 19 operating hours at 77% load and 46 C ambient. Airflow remained normal, suggesting the replaced interface pad was not the sole cause of the excessive heat load.",
+ "parts_involved": [
+ "Axis 4 drive heat-sink interface pad",
+ "Drive power module mounting hardware"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0029",
+ "date": "2026-08-10",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 feedback instability after a gearbox service, occurring only during deceleration with high tool inertia.",
+ "symptoms": [
+ "jitter begins at the same deceleration point on every cycle",
+ "feedback waveform remains electrically clean",
+ "reduced tool inertia nearly eliminates the symptom"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 36,
+ "load_percent": 84,
+ "runtime_hours": 13022,
+ "cycle_count": 199870
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Compared deceleration profiles across two payloads, measured joint backlash under dynamic load, and reviewed the recent gearbox service alignment marks.",
+ "repair_action": "Corrected the Axis 2 reducer output coupling alignment and rechecked backlash under the installed tool inertia.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 6.4,
+ "technician_notes": "Electrical feedback quality was stable; dynamic coupling misalignment produced a symptom that looked like servo instability. No repeat event after 1,200 loaded cycles.",
+ "parts_involved": [
+ "Axis 2 reducer output coupling insert",
+ "Alignment shims"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0030",
+ "date": "2026-08-14",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-BR-308",
+ "fault_description": "Synthetic Axis 6 brake confirmation timeout with inconsistent mechanical release timing; guide correction initially restored timing.",
+ "symptoms": [
+ "release timing varies from cycle to cycle",
+ "coil current waveform is normal",
+ "manual brake release force is noticeably higher on every third cycle"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 33,
+ "load_percent": 44,
+ "runtime_hours": 9688,
+ "cycle_count": 144110
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Performed 100 consecutive brake release cycles, measured release force, inspected actuator guide sleeve concentricity, and checked wrist-cover interference.",
+ "repair_action": "Replaced the brake guide sleeve and corrected a slightly distorted wrist-cover bracket that was loading the actuator housing, followed by 300 release cycles.",
+ "outcome": "Temporary Success",
+ "time_to_recurrence_hours": 88,
+ "downtime_hours": 6.2,
+ "technician_notes": "Release timing normalized through 300 verification cycles, but the timeout returned after 88 operating hours. Coil current and status input remained normal when the fault recurred, so the guide correction did not fully explain the intermittent event.",
+ "parts_involved": [
+ "Axis 6 brake guide sleeve",
+ "Wrist-cover bracket"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0031",
+ "date": "2026-08-18",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CO-321",
+ "fault_description": "Synthetic communication timeout on Axis 3 after a cabinet expansion added a second I/O island.",
+ "symptoms": [
+ "timeout occurs during burst I/O traffic",
+ "motion network alone is stable",
+ "event counter shows short packet queue overruns"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 34,
+ "load_percent": 66,
+ "runtime_hours": 15830,
+ "cycle_count": 236040
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Captured network utilization during motion plus I/O bursts, checked topology termination, and tested with the secondary I/O island disabled.",
+ "repair_action": "Reconfigured the synthetic network message priority and moved the I/O island to a separate traffic segment.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.2,
+ "technician_notes": "The physical patch leads tested good. Traffic contention, not cable damage, drove the recurrence.",
+ "parts_involved": [
+ "Network segment coupler",
+ "Configuration backup"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0032",
+ "date": "2026-08-21",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 4 servo instability returns after two weeks of normal operation.",
+ "symptoms": [
+ "brief oscillation during approach moves",
+ "fault is not related to temperature or payload within normal production range",
+ "drive self-test passes"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 35,
+ "load_percent": 73,
+ "runtime_hours": 10930,
+ "cycle_count": 173200
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Reviewed prior thermal and resonance tests, checked drive self-test history, captured high-resolution feedback and current traces, and inspected the feedback isolator connector for fretting.",
+ "repair_action": "Replaced the feedback isolator-to-drive jumper and connector backshell, then secured the harness against cabinet vibration.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.6,
+ "technician_notes": "The prior isolator replacement had cleared thermal noise, but a later fretting-related intermittent connection developed at the jumper. No repeat event during 3,000 cycles.",
+ "parts_involved": [
+ "Feedback isolator-to-drive jumper",
+ "Connector backshell",
+ "Harness clamp"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0033",
+ "date": "2026-08-24",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 feedback instability following maintenance inside the elbow cover.",
+ "symptoms": [
+ "fault begins immediately after a service inspection",
+ "continuity is good when stationary",
+ "fault occurs when cover is installed and the service loop is compressed"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 33,
+ "load_percent": 77,
+ "runtime_hours": 13074,
+ "cycle_count": 201410
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Compared signal integrity with elbow cover off and installed, inspected service-loop compression marks, and checked harness routing against the previous maintenance photographs.",
+ "repair_action": "Corrected harness routing, removed a sharp clamp edge, installed a padded tie point, and repeated full-range articulation tests.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 3.8,
+ "technician_notes": "The event was introduced during maintenance and reproduced only with the cover fitted. Electrical component replacement was not required.",
+ "parts_involved": [
+ "Padded harness tie point",
+ "Cable-clamp protector"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0034",
+ "date": "2026-08-27",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-MO-117",
+ "fault_description": "Synthetic Axis 5 following-error alarm after installation of a high-moment gripper; initial payload correction did not establish a repeatable resolution.",
+ "symptoms": [
+ "fault appears during combined Axis 4/5 acceleration",
+ "motor current is near the configured limit",
+ "no fault with the previous gripper"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 30,
+ "load_percent": 67,
+ "runtime_hours": 9750,
+ "cycle_count": 145830
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Verified actual tool mass and center of gravity, ran current/following-error traces at 50%, 75%, and 100% acceleration, and checked Axis 5 brake timing.",
+ "repair_action": "Re-entered the measured tool center-of-gravity offset and reduced the combined wrist acceleration ramp for the new gripper program, then repeated a limited production cycle.",
+ "outcome": "Unresolved",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 3.9,
+ "technician_notes": "The payload correction reduced the frequency of the alarm but did not eliminate it consistently. Brake and reducer checks were nominal, while the remaining following-error spike was not repeatable enough to confirm whether the cause was payload dynamics, mechanical drag, or trajectory interaction. Further controlled isolation was deferred.",
+ "parts_involved": [
+ "Gripper payload configuration record"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0035",
+ "date": "2026-08-30",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-GR-614",
+ "fault_description": "Synthetic Axis 2 gearbox heat alarm with renewed vibration after bearing replacement.",
+ "symptoms": [
+ "temperature trend is acceptable but vibration has increased",
+ "alarm occurs during fast reversals",
+ "metallic particulate is visible on the drain magnet"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 37,
+ "load_percent": 89,
+ "runtime_hours": 15940,
+ "cycle_count": 238980
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Collected vibration spectrum, inspected drain magnet residue, checked gear mesh pattern, and compared shaft runout against previous service values.",
+ "repair_action": "Replaced the Axis 2 intermediate gear pair and corrected shaft runout with a replacement spacer set.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 10.5,
+ "technician_notes": "Bearing replacement had reduced temperature but did not remove the gear-mesh vibration. The new gear pair removed the dominant harmonic in the follow-up spectrum.",
+ "parts_involved": [
+ "Axis 2 intermediate gear pair",
+ "Shaft spacer set",
+ "Gearbox seal"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0036",
+ "date": "2026-09-02",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-EN-233",
+ "fault_description": "Synthetic Axis 1 reference loss during humid morning startup, with the reference signal briefly present before dropping.",
+ "symptoms": [
+ "reference establishes for several seconds then disappears",
+ "event is more frequent after overnight shutdown",
+ "battery and hold-up circuit test normal"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 24,
+ "load_percent": 19,
+ "runtime_hours": 11040,
+ "cycle_count": 175420
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Performed dew-point inspection, monitored reference signal at the arm-to-cabinet connector, measured insulation resistance after a cold start, and repeated after controlled cabinet heating.",
+ "repair_action": "Replaced the arm-to-cabinet reference harness and fitted a sealed connector boot; cabinet dehumidification procedure was added to the startup checklist.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 5.7,
+ "technician_notes": "Failure disappeared after the harness replacement. Signal quality changed with humidity, indicating moisture ingress rather than a depleted battery.",
+ "parts_involved": [
+ "Axis 1 reference harness",
+ "Sealed connector boot"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0037",
+ "date": "2026-09-06",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 servo feedback instability after a low-load high-speed run; the intermittent event could not be reproduced consistently during service.",
+ "symptoms": [
+ "jitter occurs during low-load high-speed moves",
+ "feedback dropout is shorter than in earlier events",
+ "harness continuity remains stable through articulation"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 31,
+ "load_percent": 48,
+ "runtime_hours": 13155,
+ "cycle_count": 203980
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Repeated the event with three payloads, compared feedback phase noise, inspected the drive input filter, and exchanged the Axis 2 drive with a known-good synthetic spare for A/B testing.",
+ "repair_action": "Cleaned and reseated the Axis 2 drive-side feedback connector and secured the connector block after the initial A/B swap results were inconclusive; extended monitoring was scheduled.",
+ "outcome": "Unresolved",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 4.4,
+ "technician_notes": "The fault disappeared intermittently during testing and could not be forced for a conclusive A/B result. Harness articulation, payload change, and connector service altered the symptom frequency but no intervention produced a validated lasting resolution. Robot remained under monitored operation pending another captured event.",
+ "parts_involved": [
+ "Axis 2 drive-side feedback connector retainer",
+ "Diagnostic data recorder"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0038",
+ "date": "2026-09-09",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-BR-308",
+ "fault_description": "Synthetic Axis 6 brake timeout returns during low-temperature startup after prior actuator and harness repairs.",
+ "symptoms": [
+ "first brake release takes 250 ms longer than normal",
+ "subsequent releases are normal",
+ "ambient temperature is 16 C"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 16,
+ "load_percent": 29,
+ "runtime_hours": 9816,
+ "cycle_count": 147300
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Measured brake release timing from cold start through 30 consecutive releases, checked coil resistance and guide friction, and inspected brake lubricant viscosity.",
+ "repair_action": "Removed excess synthetic grease from the guide interface, applied the specified thin-film lubricant, and adjusted the first-release timing compensation.",
+ "outcome": "Temporary Success",
+ "time_to_recurrence_hours": 72,
+ "downtime_hours": 3.2,
+ "technician_notes": "Cold-start timing improved immediately, but the same first-release delay returned after three days during another cool morning startup.",
+ "parts_involved": [
+ "Brake guide lubricant"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0039",
+ "date": "2026-09-12",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-TP-511",
+ "fault_description": "Synthetic tool-center drift after repeated tool-change cycles; coupling play was detected but the first locking-insert replacement did not eliminate the drift.",
+ "symptoms": [
+ "TCP shift is 0.5 mm after tool change",
+ "fixed-tool verification is stable",
+ "quick-change coupling shows axial play under load"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 29,
+ "load_percent": 57,
+ "runtime_hours": 16020,
+ "cycle_count": 241120
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Measured TCP before and after 100 tool changes, checked flange fastener torque, and quantified axial play at the quick-change coupling under load.",
+ "repair_action": "Replaced the quick-change coupling locking insert and recalibrated the tool-center reference, then verified 40 tool changes.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 36,
+ "downtime_hours": 5.5,
+ "technician_notes": "TCP accuracy improved immediately after the insert replacement, but 36 operating hours later the drift returned after repeated tool changes. Subsequent checks showed movement at the coupling interface remained, so the first locking-insert replacement did not fully restore stiffness.",
+ "parts_involved": [
+ "Quick-change locking insert",
+ "TCP reference record"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0040",
+ "date": "2026-09-15",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CB-209",
+ "fault_description": "Synthetic cabinet cooling alarm after filter replacement, now associated with a partially blocked exhaust path.",
+ "symptoms": [
+ "fan runs continuously at high speed",
+ "inlet temperature is acceptable",
+ "exhaust temperature is unusually high and cabinet pressure is elevated"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 41,
+ "load_percent": 82,
+ "runtime_hours": 11120,
+ "cycle_count": 177080
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Measured cabinet pressure differential, inspected exhaust louvers, and used a smoke-trace test to check airflow through the top vent path.",
+ "repair_action": "Removed a collapsed flexible duct section from the exhaust path and replaced the damaged louver insert.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 3.5,
+ "technician_notes": "The intake filter was clean. Restriction on the exhaust side was causing recirculation and elevated internal temperature.",
+ "parts_involved": [
+ "Exhaust duct section",
+ "Louver insert"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0041",
+ "date": "2026-09-17",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 feedback instability after drive replacement, occurring only with the robot mounted on a temporary fixture.",
+ "symptoms": [
+ "jitter appears on temporary fixture but not on production base",
+ "feedback quality is acceptable",
+ "axis vibration amplitude changes with fixture bolt preload"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 30,
+ "load_percent": 55,
+ "runtime_hours": 13192,
+ "cycle_count": 204820
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Compared production base and temporary fixture, measured mounting-surface flatness, checked anchor-bolt torque, and repeated the trajectory with an external accelerometer on the elbow casting.",
+ "repair_action": "Corrected fixture flatness with shims and restored the specified anchor-bolt torque pattern; no electronic parts were replaced.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 5.1,
+ "technician_notes": "Drive replacement was not implicated. Structural vibration from the temporary fixture amplified a narrow mechanical mode and mimicked feedback instability.",
+ "parts_involved": [
+ "Mounting shims",
+ "Anchor-bolt washers"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0042",
+ "date": "2026-09-19",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-MO-117",
+ "fault_description": "Synthetic Axis 5 following-error alarm with no mechanical drag but an intermittent brake status input.",
+ "symptoms": [
+ "following error spikes at brake-open transition",
+ "motor current is normal once motion starts",
+ "brake status bit flickers for one scan"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 27,
+ "load_percent": 45,
+ "runtime_hours": 9854,
+ "cycle_count": 148900
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Correlated brake status transitions with following-error timestamps, checked input terminal torque, and monitored the brake confirmation signal with an external logger.",
+ "repair_action": "Replaced the brake status proximity sensor and repaired its mounting bracket alignment.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 3.1,
+ "technician_notes": "Mechanical reducer and brake actuator tests passed. A one-scan status dropout caused the controller to interpret the transition as a following-error event.",
+ "parts_involved": [
+ "Axis 5 brake status sensor",
+ "Sensor mounting bracket"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0043",
+ "date": "2026-09-21",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 3 servo feedback instability that initially responds to connector service but returns after a maintenance washdown.",
+ "symptoms": [
+ "short feedback interruptions on Axis 3",
+ "fault is absent before washdown",
+ "connector cavity shows light moisture residue"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 28,
+ "load_percent": 62,
+ "runtime_hours": 16108,
+ "cycle_count": 242980
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Inspected connector cavity, performed insulation-resistance testing before and after controlled drying, checked washdown spray direction, and flex-tested the harness.",
+ "repair_action": "Replaced the Axis 3 connector seal, fitted a drip shield, and rerouted the harness away from the washdown spray path.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 5.6,
+ "technician_notes": "Drying restored operation temporarily during diagnosis, but the sealing defect and spray path had to be corrected to prevent repeat moisture ingress.",
+ "parts_involved": [
+ "Axis 3 connector seal",
+ "Drip shield",
+ "Harness clamps"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0044",
+ "date": "2026-09-22",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-TP-511",
+ "fault_description": "Synthetic tool-center drift that remains unresolved because drift source changes between static and dynamic tests.",
+ "symptoms": [
+ "static TCP check shifts 0.3 mm",
+ "dynamic path shows up to 1.0 mm deviation",
+ "tool plate and quick-change coupling both show small but inconsistent motion"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 34,
+ "load_percent": 79,
+ "runtime_hours": 11170,
+ "cycle_count": 177980
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Repeated static and dynamic TCP measurements, checked flange runout, quick-change play, and tool payload balance; results were not repeatable enough to isolate one component.",
+ "repair_action": "Retorqued the tool plate, marked reference witness points, and scheduled controlled component isolation before further parts replacement.",
+ "outcome": "Unresolved",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 2.6,
+ "technician_notes": "No repair could be validated because drift magnitude changed between tests. Robot returned to reduced-speed operation pending an isolated tool-interface test.",
+ "parts_involved": [
+ "Tool plate fasteners",
+ "Quick-change coupling"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0045",
+ "date": "2026-09-23",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 feedback instability returns after 18 hours following a fixture vibration correction.",
+ "symptoms": [
+ "jitter reappears during high-acceleration moves",
+ "electrical feedback is intermittently noisy",
+ "fixture is now verified mechanically stable"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 32,
+ "load_percent": 74,
+ "runtime_hours": 13210,
+ "cycle_count": 206300
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Rechecked fixture vibration, performed drive A/B swap, measured feedback isolation at the drive input, and compared motor-current harmonics before and after swap.",
+ "repair_action": "Replaced the Axis 2 feedback isolator and installed a fresh drive-to-isolator jumper after the known-good drive did not remove the fault.",
+ "outcome": "Failure",
+ "time_to_recurrence_hours": 18,
+ "downtime_hours": 6.7,
+ "technician_notes": "The isolator and jumper replacement reduced the noise, but the same Axis 2 fault returned after 18 operating hours during high-acceleration production. Mechanical vibration had already been ruled out, so the repair did not fully resolve the electrical intermittent.",
+ "parts_involved": [
+ "Axis 2 feedback isolator",
+ "Drive-to-isolator jumper"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0046",
+ "date": "2026-09-24",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-BR-308",
+ "fault_description": "Synthetic Axis 6 brake timeout persists intermittently despite actuator, harness, guide, and timing work.",
+ "symptoms": [
+ "timeout occurs once every 20-40 brake releases",
+ "no consistent ambient-temperature correlation",
+ "coil current, actuator travel, and status input all pass isolated tests"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 26,
+ "load_percent": 41,
+ "runtime_hours": 9880,
+ "cycle_count": 149620
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Executed 500 release cycles with event-triggered logging, checked controller output timing, monitored status input, and compared the rare failures against cabinet vibration events.",
+ "repair_action": "No component replacement authorized; isolated the robot for extended observation and captured high-resolution timing traces for the next recurrence.",
+ "outcome": "Unresolved",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 2.9,
+ "technician_notes": "The fault could not be forced reliably after isolated subsystem tests. Further evidence is required before another parts change.",
+ "parts_involved": [
+ "Diagnostic data recorder"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0047",
+ "date": "2026-09-25",
+ "robot_id": "AT600-RB-112",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 3 feedback instability under high payload after connector sealing repair.",
+ "symptoms": [
+ "feedback spikes during combined Axis 3/4 acceleration",
+ "no moisture found",
+ "mechanical backlash remains within baseline"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 36,
+ "load_percent": 93,
+ "runtime_hours": 16142,
+ "cycle_count": 243840
+ },
+ "technician": "Arjun Nair",
+ "diagnostic_action": "Captured feedback and current at 50%, 75%, and 95% load, monitored supply ripple, and compared the event with the drive's internal thermal log.",
+ "repair_action": "Replaced the Axis 3 drive power-conditioning module and repeated 1,500 loaded cycles.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 7.3,
+ "technician_notes": "Connector sealing remained intact. The symptom tracked load and drive temperature rather than joint angle or humidity in this event.",
+ "parts_involved": [
+ "Axis 3 drive power-conditioning module"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0048",
+ "date": "2026-09-26",
+ "robot_id": "AT600-RB-118",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-CB-209",
+ "fault_description": "Synthetic cabinet cooling alarm with normal fan and airflow but an abnormally high cabinet heat load caused by a failing drive capacitor bank.",
+ "symptoms": [
+ "temperature climbs despite normal airflow",
+ "alarm begins after 90 minutes of high-duty operation",
+ "drive cabinet power ripple is above historical baseline"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 39,
+ "load_percent": 90,
+ "runtime_hours": 11220,
+ "cycle_count": 179410
+ },
+ "technician": "Karthik Rao",
+ "diagnostic_action": "Verified airflow, measured cabinet ripple current, compared drive-module temperatures, and isolated the hot drive bay with thermal imaging.",
+ "repair_action": "Replaced the synthetic drive capacitor bank and rechecked cabinet ripple under a 2-hour load test.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 8.8,
+ "technician_notes": "Cooling components were functioning. Excess electrical dissipation from the degraded capacitor bank was driving cabinet temperature upward.",
+ "parts_involved": [
+ "Drive DC-link capacitor bank",
+ "Busbar insulators"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0049",
+ "date": "2026-09-27",
+ "robot_id": "AT600-RB-104",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-SV-402",
+ "fault_description": "Synthetic Axis 2 feedback instability returns after a temporary recovery, with evidence pointing to an intermittent drive-side reference fault.",
+ "symptoms": [
+ "fault returns after several hours of mixed-load production",
+ "harness remains stable through full articulation",
+ "drive-side reference monitor shows a brief offset immediately before the alarm"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 35,
+ "load_percent": 72,
+ "runtime_hours": 13268,
+ "cycle_count": 208040
+ },
+ "technician": "Ravi Menon",
+ "diagnostic_action": "Reviewed the previous 18-hour recurrence, monitored the drive-side reference line with a high-speed logger, and repeated the test after vibration-isolating the connector block.",
+ "repair_action": "Replaced the Axis 2 drive-side reference conditioning board and rebuilt the connector strain relief; verification included 3,000 mixed-load cycles.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 9.2,
+ "technician_notes": "The earlier isolator-and-jumper replacement had only temporary effect. This case provided direct evidence of a brief drive-side reference offset before the servo alarm.",
+ "parts_involved": [
+ "Axis 2 reference conditioning board",
+ "Connector strain-relief block"
+ ],
+ "synthetic": true
+ },
+ {
+ "case_id": "RC-0050",
+ "date": "2026-09-28",
+ "robot_id": "AT600-RB-107",
+ "robot_model": "AeroTech AT-600",
+ "fault_code": "ERR-MO-117",
+ "fault_description": "Synthetic Axis 5 following-error alarm after a high-cycle run, with reducer wear indicators and no brake timing fault.",
+ "symptoms": [
+ "following error rises during repeated reversals",
+ "cold start is normal",
+ "Axis 5 vibration spectrum shows a growing harmonic near the reducer mesh band"
+ ],
+ "operating_conditions": {
+ "ambient_temperature_c": 32,
+ "load_percent": 64,
+ "runtime_hours": 9938,
+ "cycle_count": 151460
+ },
+ "technician": "Meera Iyer",
+ "diagnostic_action": "Compared brake release timing, following-error traces, and vibration spectrum before and after thermal soak; inspected reducer backlash and lubricant condition.",
+ "repair_action": "Replaced the Axis 5 reducer wear ring and refreshed lubricant, then verified 2,500 production-equivalent cycles.",
+ "outcome": "Success",
+ "time_to_recurrence_hours": null,
+ "downtime_hours": 8.7,
+ "technician_notes": "Brake status and timing remained nominal. The dominant change was reducer mesh vibration and backlash growth, making this a mechanical cause despite the same high-level following-error symptom seen in earlier cases.",
+ "parts_involved": [
+ "Axis 5 reducer wear ring",
+ "Synthetic reducer lubricant"
+ ],
+ "synthetic": true
+ }
+ ]  
